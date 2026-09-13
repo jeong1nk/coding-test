@@ -1,3 +1,4 @@
+### 공부할 때는 GROUP BY에 주로 한 컬럼만 있었어서 꽤나 시간이 소요됐다...
 # [level 4] 서울에 위치한 식당 목록 출력하기 - 131118 
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/131118) 

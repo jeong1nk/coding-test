@@ -1,0 +1,8 @@
+-- 09가 아닌 9로 출력해야 하므로 문자열로 변환한 것을 다시 숫자 형태로 변환
+-- 'FMHH24'를 사용해도 되지만 FM 포맷 문제가 발생할수도 있음
+SELECT TO_NUMBER(TO_CHAR(DATETIME, 'HH24')) AS HOUR, 
+       COUNT(*) AS COUNT
+FROM ANIMAL_OUTS
+WHERE TO_CHAR(DATETIME, 'HH24') BETWEEN '09' AND '19'
+GROUP BY TO_CHAR(DATETIME, 'HH24')
+ORDER BY HOUR

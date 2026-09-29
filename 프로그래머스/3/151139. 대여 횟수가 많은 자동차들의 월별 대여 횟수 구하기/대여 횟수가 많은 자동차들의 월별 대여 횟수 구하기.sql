@@ -1,4 +1,5 @@
--- 코드를 입력하세요
+-- 1. 기간동안 5번 이상 빌린 CAR_ID 찾기(WHERE절 서브쿼리)
+-- 2. 차량별, 월별 대여횟수 세기
 SELECT TO_NUMBER(TO_CHAR(START_DATE, 'MM')) AS MONTH, CAR_ID, COUNT(*) AS RECORDS
 FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
 WHERE CAR_ID IN (

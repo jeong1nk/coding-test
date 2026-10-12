@@ -2,7 +2,7 @@
 # 아스키 코드 A~Z: 65~90, 아스키 코드 a~z: 97~122
 # 배열 인덱스 A~Z: 0~25,  a~z: 26~51
 def solution(my_string):
-    answer = [0] * 52
+    answer = [0] * 52 #알파벳에 해당하는 자리를 만듦
     
     for text in my_string:
         if 65 <= ord(text) <= 90:  # 대문자

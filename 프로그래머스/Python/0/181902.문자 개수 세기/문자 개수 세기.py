@@ -5,9 +5,9 @@ def solution(my_string):
     answer = [0] * 52
     
     for text in my_string:
-        if 65 <= ord(text) <= 90:
+        if 65 <= ord(text) <= 90:  # 대문자
             answer[ord(text) - 65] += 1
-        elif 97 <= ord(text) <= 122:
+        elif 97 <= ord(text) <= 122: # 소문자
             answer[ord(text) - 71] += 1 # 65 + 26
             
     return answer

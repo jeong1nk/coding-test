@@ -3,12 +3,10 @@ def solution(strArr):
     dict_len = {}
     
     for s in strArr:
-        length = len(s)
-        
-        if length not in dict_len:
-            dict_len[length] = 1
+        if len(s) not in dict_len:
+            dict_len[len(s)] = 1
         else:
-            dict_len[length] += 1
+            dict_len[len(s)] += 1
         
     answer = max(dict_len.values())
     

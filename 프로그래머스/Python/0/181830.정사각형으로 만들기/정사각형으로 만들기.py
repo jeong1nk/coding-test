@@ -3,12 +3,12 @@ def solution(arr):
     column = len(arr[0])
     
     if row > column:
-        for i in arr:
-            while len(i) < row:
-                i.append(0)
+        for x in arr:
+            x.extend([0] * (row - column))
                 
     elif row < column:
-        while len(arr) < column:
+        # for 문 안에서 안쓰이면 _ 로 해도 OK
+        for y in range(column - row):
             arr.append([0] * column)
             
     return arr

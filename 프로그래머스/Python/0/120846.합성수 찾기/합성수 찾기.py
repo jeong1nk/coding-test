@@ -8,7 +8,7 @@ def solution(n):
             if idx % num == 0 :
                 cnt += 1
             
-            if cnt >= 3:
+            if cnt > 2:
                 answer += 1
                 break
             

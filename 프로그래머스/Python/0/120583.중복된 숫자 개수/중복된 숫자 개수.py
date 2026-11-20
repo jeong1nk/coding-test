@@ -1,3 +1,4 @@
+# array.count(n) 하면 간단
 def solution(array, n):
     answer = 0
     

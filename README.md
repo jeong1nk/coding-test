@@ -14,3 +14,11 @@
 3. SW Expert Academy
 - 📁`swexpertacademy`
 - https://swexpertacademy.com/main/main.do
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## Database
+|  |
+| ------- |
+| [0595-big-countries](https://github.com/jeong1nk/coding-test/tree/master/0595-big-countries) |
+<!---LeetCode Topics End-->

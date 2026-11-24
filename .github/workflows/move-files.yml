@@ -20,10 +20,10 @@ jobs:
           TARGET_DIR="LeetCode"
           mkdir -p "$TARGET_DIR"
 
-          # 루트에 있는 폴더 중 숨김 폴더(.github 등)와 대상 폴더를 제외하고 이동
           for dir in */; do
             dir=${dir%/}
-            if [[ "$dir" != "$TARGET_DIR" && "$dir" != .* ]]; then
+            # 폴더 이름이 '숫자-소문자영문/숫자' 형태(예: 0001-two-sum)일 때만 이동
+            if [[ "$dir" =~ ^[0-9]+-[a-z0-9-]+$ ]]; then
               git mv "$dir" "$TARGET_DIR/"
             fi
           done

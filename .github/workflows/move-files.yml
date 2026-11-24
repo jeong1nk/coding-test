@@ -1,4 +1,4 @@
-name: Move LeetHub files to subfolder
+name: Organize LeetCode by Language and Level
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main  # 기본 브랜치가 master라면 master로 수정
 
 jobs:
-  move-files:
+  organize-files:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
@@ -14,23 +14,45 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Move new problem folders
+      - name: Categorize by language and difficulty
         run: |
-          TARGET_DIR="LeetCode"
-          mkdir -p "$TARGET_DIR"
+          PLATFORM="LeetCode"
 
-          # 1. 잘못 들어간 폴더들을 다시 바깥(루트)으로 원위치
-          for folder in "프로그래머스" "SWEA" "백준"; do
-            if [ -d "$TARGET_DIR/$folder" ]; then
-              git mv "$TARGET_DIR/$folder" ./
+          # 루트 및 기존 LeetCode 하위 경로에서 문제 폴더 탐색
+          find . -maxdepth 4 -type d -regextype posix-extended -regex '.*/[0-9]+-[a-z0-9-]+' | while read -r dir; do
+            dir=${dir#./}
+            name=$(basename "$dir")
+
+            # 1. 언어(Language) 판별 (파일 확장자 기준)
+            LANG="Other"
+            if ls "$dir"/*.py >/dev/null 2>&1; then LANG="Python"
+            elif ls "$dir"/*.java >/dev/null 2>&1; then LANG="Java"
+            elif ls "$dir"/*.cpp >/dev/null 2>&1; then LANG="C++"
+            elif ls "$dir"/*.c >/dev/null 2>&1; then LANG="C"
+            elif ls "$dir"/*.js >/dev/null 2>&1; then LANG="JavaScript"
+            elif ls "$dir"/*.ts >/dev/null 2>&1; then LANG="TypeScript"
+            elif ls "$dir"/*.go >/dev/null 2>&1; then LANG="Go"
+            elif ls "$dir"/*.rs >/dev/null 2>&1; then LANG="Rust"
+            elif ls "$dir"/*.kt >/dev/null 2>&1; then LANG="Kotlin"
+            elif ls "$dir"/*.swift >/dev/null 2>&1; then LANG="Swift"
             fi
-          done
 
-          # 2. 앞으로 올라올 LeetCode 문제(숫자-영문)만 이동
-          for dir in */; do
-            dir=${dir%/}
-            if [[ "$dir" =~ ^[0-9]+-[a-z0-9-]+$ ]]; then
-              git mv "$dir" "$TARGET_DIR/"
+            # 2. 난이도(Level) 판별 (README.md 텍스트 기준)
+            LEVEL="Unclassified"
+            if [ -f "$dir/README.md" ]; then
+              if grep -qi "Easy" "$dir/README.md"; then LEVEL="Easy"
+              elif grep -qi "Medium" "$dir/README.md"; then LEVEL="Medium"
+              elif grep -qi "Hard" "$dir/README.md"; then LEVEL="Hard"
+              fi
+            fi
+
+            # 3. 목표 경로로 이동 (${platform}/${language}/${level}/${problem})
+            TARGET_DIR="$PLATFORM/$LANG/$LEVEL"
+            TARGET="$TARGET_DIR/$name"
+
+            if [ "$dir" != "$TARGET" ]; then
+              mkdir -p "$TARGET_DIR"
+              git mv "$dir" "$TARGET"
             fi
           done
 
@@ -40,6 +62,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           if [[ -n $(git status -s) ]]; then
             git add .
-            git commit -m "Restore folders and move LeetCode files [skip ci]"
+            git commit -m "Organize LeetCode by language and level [skip ci]"
             git push
           fi

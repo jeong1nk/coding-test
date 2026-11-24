@@ -17,20 +17,17 @@ jobs:
 
       - name: Move new problem folders
         run: |
-          # 1. 잘못 들어간 프로그래머스 폴더를 다시 바깥(루트)으로 이동
-          if [ -d "LeetCode/프로그래머스" ]; then
-            git mv "LeetCode/프로그래머스" ./
-          fi
-
-          # 2. 앞으로 올라올 LeetCode 문제(숫자-영문)만 이동
           TARGET_DIR="LeetCode"
           mkdir -p "$TARGET_DIR"
+
           for dir in */; do
             dir=${dir%/}
+            # 폴더 이름이 '숫자-소문자영문/숫자' 형태(예: 0001-two-sum)일 때만 이동
             if [[ "$dir" =~ ^[0-9]+-[a-z0-9-]+$ ]]; then
               git mv "$dir" "$TARGET_DIR/"
             fi
           done
+
 
 
       - name: Commit and push changes

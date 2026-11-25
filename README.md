@@ -21,4 +21,5 @@
 |  |
 | ------- |
 | [0595-big-countries](https://github.com/jeong1nk/coding-test/tree/master/0595-big-countries) |
+| [1148-article-views-i](https://github.com/jeong1nk/coding-test/tree/master/1148-article-views-i) |
 <!---LeetCode Topics End-->

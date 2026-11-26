@@ -23,6 +23,7 @@
 | [0183-customers-who-never-order](https://github.com/jeong1nk/coding-test/tree/master/0183-customers-who-never-order) |
 | [0595-big-countries](https://github.com/jeong1nk/coding-test/tree/master/0595-big-countries) |
 | [1148-article-views-i](https://github.com/jeong1nk/coding-test/tree/master/1148-article-views-i) |
+| [1667-fix-names-in-a-table](https://github.com/jeong1nk/coding-test/tree/master/1667-fix-names-in-a-table) |
 | [1683-invalid-tweets](https://github.com/jeong1nk/coding-test/tree/master/1683-invalid-tweets) |
 | [1873-calculate-special-bonus](https://github.com/jeong1nk/coding-test/tree/master/1873-calculate-special-bonus) |
 <!---LeetCode Topics End-->
